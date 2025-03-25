@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pumpfun-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pumpfun-monitor
+    restart: unless-stopped
+    networks:
+      - pumpfun-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+# 定义网络
+networks:
+  pumpfun-network:
+    driver: bridge
